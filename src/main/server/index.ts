@@ -440,9 +440,10 @@ const server = (port = 3000) => {
     socket.on('disconnect', () => ptyProcess.kill())
   })
 
-  server.listen(port, 'localhost')
+  const host = config.get('server.host', 'localhost')
+  server.listen(port, host)
 
-  console.log(`Address: http://localhost:${port}`)
+  console.log(`Address: http://${host}:${port}`)
 
   return callback
 }
